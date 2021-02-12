@@ -115,13 +115,13 @@ class Blackjack{
 
         // Keep drawing until at least 17
         while ($this->dealer->score <= 17){
-            trigger_error('not enough');
+
             $this->hit("dealer");
         } 
 
         // Decide to draw again if over 18 and under 20 w/ random decision
         if ($this->dealer->score >= 18 && $this->dealer->score <= 20 && rand(0, 1)){
-            trigger_error('over draw');
+
             $this->hit("dealer");
         }
 
