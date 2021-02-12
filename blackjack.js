@@ -3,6 +3,8 @@
 // Function autoruns on HTML load. Begins new/first round
 function start_round(){
 
+    $("div#round-finish-menu").hide();
+
     $.ajax({
         url:'/src/router.php?request=start_round',
         type:'GET',
@@ -50,6 +52,7 @@ function hit(){
             playerUpdateHand(result.player.hand);
             playerUpdateTotal(result.player.score);
 
+            console.log('player: '+result.player.bust+' dealer:'+result.dealer.bust);
             // Evaluate for a bust, blackjack or tie
             switch (result.player.bust){
                 case true:
@@ -106,7 +109,7 @@ function hold(){
                 dealerWin();
                 dealerUpdateWins(result.dealer.wins);
             }
-            if(result.player.score === result.dealer.sore){
+            if(result.player.score === result.dealer.score){
 
                 tie();
                 dealerUpdateWins(result.dealer.wins);
@@ -122,6 +125,11 @@ function hold(){
                 playerWin();
                 playerUpdateWins(result.player.wins);
             }
+
+            console.log(result.dealer.hand);
+            // Show dealer hand after draw
+            dealerUpdateHand(result.dealer.hand);
+            dealerUpdateTotal(result.dealer.score);
         },
         error: function(err){console.log(err);} // Handle HTTP error codes
     });
@@ -137,43 +145,36 @@ function resetGame(){
 // Alert player of bust and start new round
 function playerBust(){
 
-    alert("You went bust!");
-
-    start_round();
+    $("h3#game-state").html("Result: You went bust!");
+    $("div#round-finish-menu").show();
 }
 
 // Alert player of win and start new round
 function playerWin(){
 
-    alert("You won!");
-
-    start_round();
-
+    $("h3#game-state").html("Result: You won!");
+    $("div#round-finish-menu").show();
 }
 
 // Alert dealer of bust and start new round
 function dealerBust(){
 
-    alert("Dealer went bust. You win!");
-
-    start_round();
+    $("h3#game-state").html("Result: Dealer went bust! You win!");
+    $("div#round-finish-menu").show();
 }
 
 // Alert dealer of win and start new round
 function dealerWin(){
 
-    alert("You lost!");
-
-    start_round();
-
+    $("h3#game-state").html("Result: Dealer wins!");
+    $("div#round-finish-menu").show();
 }
 
 // Alert player of a tie and start new round
 function tie(){
 
-    alert("It's a tie! What are the odds?");
-
-    start_round();
+    $("h3#game-state").html("It's a tie! What are the odds?");
+    $("div#round-finish-menu").show();
 }
 
 // During a win, loss or hold, the dealer needs to reveal their hand
