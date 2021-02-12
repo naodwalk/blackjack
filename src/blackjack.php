@@ -119,8 +119,8 @@ class Blackjack{
             $this->hit("dealer");
         } 
 
-        // Decide to draw again if under 18 w/ random decision
-        if ($this->dealer->score >=18 && rand(0, 1)){
+        // Decide to draw again if over 18 and under 20 w/ random decision
+        if ($this->dealer->score >= 18 && $this->dealer->score <= 20 && rand(0, 1)){
 
             $this->hit("dealer");
         }
