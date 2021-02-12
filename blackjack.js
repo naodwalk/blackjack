@@ -52,7 +52,6 @@ function hit(){
             playerUpdateHand(result.player.hand);
             playerUpdateTotal(result.player.score);
 
-            console.log('player: '+result.player.bust+' dealer:'+result.dealer.bust);
             // Evaluate for a bust, blackjack or tie
             switch (result.player.bust){
                 case true:
