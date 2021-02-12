@@ -114,16 +114,10 @@ class Blackjack{
     function hold(){
 
         // Keep drawing until at least 17
-        while ($this->dealer->score <= 17){
+        while ($this->dealer->score <= 16){
 
             $this->hit("dealer");
         } 
-
-        // Decide to draw again if over 18 and under 20 w/ random decision
-        if ($this->dealer->score >= 18 && $this->dealer->score <= 20 && rand(0, 1)){
-
-            $this->hit("dealer");
-        }
 
         // Assign the winner based on high score
         if ($this->dealer->score > $this->player->score && $this->dealer->bust === false){
