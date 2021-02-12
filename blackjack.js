@@ -126,7 +126,6 @@ function hold(){
                 playerUpdateWins(result.player.wins);
             }
 
-            console.log(result.dealer.hand);
             // Show dealer hand after draw
             dealerUpdateHand(result.dealer.hand);
             dealerUpdateTotal(result.dealer.score);
