@@ -51,6 +51,7 @@ class Score{
             }
         }
 
+        // Re-evaluate Aces with each score to determine if value needs to be adjusted to prevent bust
         foreach ($aceCards as $ace){
 
             if ($totalScore <= 10){

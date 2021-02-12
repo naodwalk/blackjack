@@ -114,13 +114,13 @@ class Blackjack{
     function hold(){
 
         // Keep drawing until at least 17
-        while ($this->dealer->score < 17){
-            
+        while ($this->dealer->score <= 17){
+
             $this->hit("dealer");
         } 
 
-        // Decide to draw again if under 19 w/ random decision
-        if ($this->dealer->score <=19 && rand(0, 1)){
+        // Decide to draw again if under 18 w/ random decision
+        if ($this->dealer->score >=18 && rand(0, 1)){
 
             $this->hit("dealer");
         }
@@ -181,7 +181,7 @@ class Blackjack{
                 default:
                     
                     trigger_error("Invalid player selection");
-                    break;
+                break;
             }
         }
         // Score of 21 is a win
@@ -205,7 +205,7 @@ class Blackjack{
                 default:
                     
                     trigger_error("Invalid player selection");
-                    break;
+                break;
             }
         }
         // Under 21 is no bust.
